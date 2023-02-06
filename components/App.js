@@ -1,12 +1,56 @@
 
 import Assignments from "./Assignments.js"
+import Panel from "./Panel.js"
 
 export default {
-    components: {Assignments},
-    
-    template: `
+    components: { Assignments, Panel },
 
-    <assignments></assignments>
+    template: `
+    <div class = "grid gap-6">
+
+        <assignments></assignments>
+
+        <!-- <panel heading = "Hello World" /> -->
+
+       <!-- <panel>
+            This is my default content.
+        </panel>
+
+        <panel>
+
+            <template v-slot:heading>
+                Hey There.
+            </template>
+
+                This is my default content.
+        </panel>
+
+        <panel>
+            <template v-slot:heading>
+                Hey There
+            </template>
+
+            This is my default content.
+
+            <template v-slot:footer>
+                Click here to learn more
+            </template>
+
+        </panel>
+        <panel theme = 'light'>
+            <template v-slot:heading>
+                Hey There
+            </template>
+
+            This is my default content.
+
+            <template v-slot:footer>
+                Click here to learn more
+            </template>
+
+        </panel> -->
+
+    </div>
 
     `,
 }

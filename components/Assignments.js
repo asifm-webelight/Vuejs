@@ -4,25 +4,27 @@ export default {
 
     components: { AssignmentList, AssignmentCreate },
     template: `
-    <section>
-        <assignment-list :assignments="filters.inProgress" title="In Progress"></assignment-list>
+    <section class="flex gap-8">
+        <assignment-list :assignments="filters.inProgress" title="In Progress">
+            <assignment-create @add = "add"></assignment-create>
+        </assignment-list>
 
-        <assignment-list :assignments="filters.completed" title="Completed" class="mt-5"></assignment-list>
+        <assignment-list 
+            v-if = "showCompleted"
+            :assignments="filters.completed" 
+            title="Completed" 
+            can-toggle
+            @toggle = "showCompleted = !showCompleted"
+            ></assignment-list>
  
-        <assignment-create @add = "add"></assignment-create>
     </section>
     `,
 
     data() {
 
         return {
-            assignments: [
-                { name: 'Java', complete: false, id: 1, tag: 'Back-End' },
-                { name: 'Laravel', complete: false, id: 2, tag: 'Back-End' },
-                { name: 'Vuejs', complete: false, id: 3, tag: 'Front-End' },
-                { name: 'React Js', complete: false, id: 4, tag: 'Front-End' },
-                { name: 'Node Js', complete: false, id: 5, tag: 'Back-End' },
-            ],
+            assignments: [],
+            showCompleted: true
         }
     },
 
@@ -43,6 +45,14 @@ export default {
         }
     },
 
+    created() {
+        //alert("h')
+        fetch('http://localhost:3000/assignments')
+            .then(response => response.json())
+            .then(assignments => {
+                this.assignments = assignments
+            })
+    },
     methods: {
         add(name) {
             this.assignments.push({
