@@ -1,15 +1,19 @@
-<script>
-import flash from "@/mixins/flash";
+<script setup>
+// import flash from "@/mixins/flash";
+import { useFlash } from "@/composables/useFlash";
 
-export default {
-  mixins: [flash],
-};
+// export default {
+//   mixins: [flash],
+// };
+
+let { flash } = useFlash();
+
 </script>
 
 <template>
   <div>
     <p>
-      <button @click="flash('It Works On The About Page !')">Click Me</button>
+      <button @click="flash('Yay!', 'It Works On The About Page !', 'info')">Click Me</button>
     </p>
   </div>
 </template>
